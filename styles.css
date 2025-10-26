@@ -107,7 +107,7 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #045e25 0%, #045e25 100%);
-    color: white;
+    color: black;
     padding: 120px 0 80px;
     text-align: center;
     margin-top: 70px;
