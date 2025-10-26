@@ -13,7 +13,7 @@ body {
 
 /* Navigation */
 .navbar {
-    background: rgba(55, 65, 81, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: saturate(180%) blur(12px);
     box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     position: fixed;
@@ -23,7 +23,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(55, 65, 81, 1);
+    background: rgba(255, 255, 255, 1);
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .nav-logo h1 {
-    color: #ffffff;
+    color: #000000;
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -60,7 +60,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #e5e7eb;
+    color: #374151;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
@@ -81,7 +81,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ffffff;
+    color: #000000;
 }
 
 .nav-link:hover::after,
@@ -99,7 +99,7 @@ body {
 .bar {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: #000;
     margin: 3px 0;
     transition: 0.3s;
 }
