@@ -37,6 +37,11 @@ body {
     height: 70px;
 }
 
+.nav-logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav-logo h1 {
     color: #ffffff;
     font-size: 1.5rem;
