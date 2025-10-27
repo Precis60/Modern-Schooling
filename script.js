@@ -42,6 +42,22 @@ menuItems.forEach(item => {
     }
 });
 
+// Settings dropdown functionality
+function toggleSettings() {
+    const settingsMenu = document.getElementById('settingsMenu');
+    settingsMenu.classList.toggle('show');
+}
+
+// Close settings dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const settingsDropdown = document.querySelector('.settings-dropdown');
+    const settingsMenu = document.getElementById('settingsMenu');
+    
+    if (!settingsDropdown.contains(event.target)) {
+        settingsMenu.classList.remove('show');
+    }
+});
+
 // Scroll animations
 const observerOptions = {
     threshold: 0.1,
