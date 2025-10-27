@@ -55,6 +55,7 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
+    position: right;
     gap: 1.5rem;
     margin-left: auto;
     margin-right: 20px;
