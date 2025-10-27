@@ -4,37 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Schooling - Lucas Anderson</title>
-    <link rel="stylesheet" href="styles.css?t=1761520832">
+    <link rel="stylesheet" href="styles.css?force=blue&t=999999999">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Override styles to ensure changes show */
+        /* FORCE OVERRIDE ALL STYLES - BLUE COLOR FIX */
+        * {
+            --blue-color: #3b82f6 !important;
+        }
+        
         .navbar {
-            background: rgba(255, 255, 255, 0.95) !important;
+            background: white !important;
+            background-color: white !important;
+            backdrop-filter: saturate(180%) blur(12px) !important;
         }
+        
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 1) !important;
+            background: white !important;
+            background-color: white !important;
         }
+        
         .nav-logo h1 {
-            color: #000000 !important;
+            color: black !important;
         }
+        
         .nav-logo h1 .accent {
-            color: #6366f1 !important;
+            color: #3b82f6 !important;
         }
+        
         .nav-link {
             color: #374151 !important;
         }
+        
         .nav-link:hover,
         .nav-link.active {
-            color: #000000 !important;
+            color: black !important;
         }
+        
         .nav-link::after {
-            background: #6366f1 !important;
+            background: #3b82f6 !important;
+            background-color: #3b82f6 !important;
         }
+        
         .bar {
-            background: #000 !important;
+            background: black !important;
+            background-color: black !important;
         }
+        
         .cta-button:hover {
-            box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 0 0 4px rgba(99,102,241,0.15) !important;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 0 0 4px rgba(59,130,246,0.15) !important;
+        }
+        
+        /* Force any green colors to be blue */
+        [style*="22c55e"] {
+            color: #3b82f6 !important;
+            background-color: #3b82f6 !important;
         }
     </style>
 </head>
