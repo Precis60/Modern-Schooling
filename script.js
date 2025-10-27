@@ -17,10 +17,17 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const href = this.getAttribute('href');
+        // Only prevent default and scroll if it's a valid anchor (not just '#')
+        if (href && href !== '#' && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
     });
 });
 
