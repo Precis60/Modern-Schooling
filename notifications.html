@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Daily Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                </ul>
+                <div class="nav-right">
+                    <div class="settings-dropdown">
+                        <button class="settings-btn" onclick="toggleSettings()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <div class="settings-menu" id="settingsMenu">
+                            <a href="#" class="settings-item">Theme</a>
+                            <a href="#" class="settings-item">Font Size</a>
+                            <a href="#" class="settings-item">Language</a>
+                            <a href="notifications.html" class="settings-item">Notifications</a>
+                            <hr class="settings-divider">
+                            <a href="#" class="settings-item">Account</a>
+                            <a href="#" class="settings-item">Help</a>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Notification Settings</h1>
+                <p class="hero-subtitle">Manage your notification preferences</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: white;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="color: #1f2937; margin-bottom: 2rem; text-align: center;">Notification Preferences</h2>
+                    
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1rem;">Blog Updates</h3>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" checked style="margin-right: 0.5rem;">
+                            <span>Email notifications for new blog posts</span>
+                        </label>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" checked style="margin-right: 0.5rem;">
+                            <span>Push notifications for daily updates</span>
+                        </label>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1rem;">Study Reminders</h3>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" checked style="margin-right: 0.5rem;">
+                            <span>Daily study session reminders</span>
+                        </label>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" style="margin-right: 0.5rem;">
+                            <span>Assignment deadline alerts</span>
+                        </label>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1rem;">Communication</h3>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" style="margin-right: 0.5rem;">
+                            <span>Comments on blog posts</span>
+                        </label>
+                        <label style="display: flex; align-items: center; margin-bottom: 1rem; cursor: pointer;">
+                            <input type="checkbox" checked style="margin-right: 0.5rem;">
+                            <span>Weekly summary emails</span>
+                        </label>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button style="background: #6366f1; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; margin-right: 1rem;">Save Changes</button>
+                        <a href="index.html" style="background: #e5e7eb; color: #374151; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <h3 style="margin-bottom: 1rem;">Modern Schooling</h3>
+                <p style="color: #9ca3af; margin-bottom: 2rem;">Lucas Anderson's Year 8 learning journey</p>
+                <div style="margin-bottom: 2rem;">
+                    <a href="index.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">Home</a>
+                    <a href="blog.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">Daily Blog</a>
+                    <a href="about.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">About</a>
+                </div>
+                <p style="color: #6b7280;">&copy; 2025 Modern Schooling - Lucas Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
