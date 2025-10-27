@@ -55,6 +55,12 @@ function toggleSettings() {
     settingsMenu.classList.toggle('show');
 }
 
+// Mobile settings functionality
+function toggleMobileSettings() {
+    const mobileSettingsMenu = document.getElementById('mobileSettingsMenu');
+    mobileSettingsMenu.classList.toggle('show');
+}
+
 // Close settings dropdown when clicking outside
 document.addEventListener('click', function(event) {
     const settingsDropdown = document.querySelector('.settings-dropdown');
