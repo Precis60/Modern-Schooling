@@ -33,8 +33,12 @@ body {
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
-    align-items: right;
+    align-items: center;
     height: 70px;
+}
+
+.nav-logo {
+    flex: 1;
 }
 
 .nav-logo a {
@@ -55,10 +59,8 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    position: right;
     gap: 1.5rem;
-    margin-left: auto;
-    margin-right: 20px;
+    margin: 0;
 }
 
 .nav-link {
@@ -111,7 +113,7 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 5px;
 }
 
 /* Settings Dropdown Styles */
