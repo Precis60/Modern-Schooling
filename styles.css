@@ -183,7 +183,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #045e25 0%, #045e25 100%);
+    background: linear-gradient(135deg, #e5e7eb 0%, #e5e7eb 100%);
     color: black;
     padding: 120px 0 80px;
     text-align: center;
@@ -391,8 +391,8 @@ body {
 
 /* Blog Page Styles */
 .page-header {
-    background: linear-gradient(135deg, #045e25 0%, #045e25 100%);
-    color: white;
+    background: linear-gradient(135deg, #e5e7eb 0%, #e5e7eb 100%);
+    color: #1e293b;
     padding: 120px 0 60px;
     text-align: center;
     margin-top: 70px;
