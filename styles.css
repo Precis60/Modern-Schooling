@@ -57,7 +57,7 @@ body {
     list-style: none;
     gap: 2rem;
     margin-left: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .nav-link {
