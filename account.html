@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Daily Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                </ul>
+                <div class="nav-right">
+                    <div class="settings-dropdown">
+                        <button class="settings-btn" onclick="toggleSettings()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <div class="settings-menu" id="settingsMenu">
+                            <a href="#" class="settings-item">Theme</a>
+                            <a href="#" class="settings-item">Font Size</a>
+                            <a href="#" class="settings-item">Language</a>
+                            <a href="notifications.html" class="settings-item">Notifications</a>
+                            <hr class="settings-divider">
+                            <a href="account.html" class="settings-item">Account</a>
+                            <a href="#" class="settings-item">Help</a>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Account Settings</h1>
+                <p class="hero-subtitle">Manage your profile and account preferences</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: white;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Profile Information -->
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Profile Information
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Full Name</label>
+                                <input type="text" value="Lucas Anderson" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Email</label>
+                                <input type="email" value="lucas.anderson@modernschooling.edu" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Grade Level</label>
+                                <select style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                                    <option value="year8" selected>Year 8</option>
+                                    <option value="year7">Year 7</option>
+                                    <option value="year9">Year 9</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <circle cx="12" cy="16" r="1"></circle>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Security & Privacy
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Current Password</label>
+                                <input type="password" placeholder="Enter current password" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">New Password</label>
+                                <input type="password" placeholder="Enter new password" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151;">Confirm New Password</label>
+                                <input type="password" placeholder="Confirm new password" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3 style="color: #374151; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                            </svg>
+                            Privacy Preferences
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 0.75rem;">
+                                <span style="color: #374151;">Make my blog posts public</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 0.75rem;">
+                                <span style="color: #374151;">Allow comments on blog posts</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 0.75rem;">
+                                <span style="color: #374151;">Show my grade level publicly</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 0.75rem;">
+                                <span style="color: #374151;">Allow search engines to index my content</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Account Actions -->
+                    <div style="background: #fef2f2; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #fecaca;">
+                        <h3 style="color: #dc2626; margin-bottom: 1rem;">Danger Zone</h3>
+                        <p style="color: #6b7280; margin-bottom: 1rem; font-size: 14px;">These actions cannot be undone. Please be careful.</p>
+                        <button style="background: #dc2626; color: white; padding: 8px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">Delete Account</button>
+                    </div>
+
+                    <!-- Save/Cancel Buttons -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button style="background: #6366f1; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; margin-right: 1rem;">Save Changes</button>
+                        <button style="background: #e5e7eb; color: #374151; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; margin-right: 1rem;">Cancel</button>
+                        <a href="index.html" style="background: #f3f4f6; color: #374151; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #1f2937; color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <h3 style="margin-bottom: 1rem;">Modern Schooling</h3>
+                <p style="color: #9ca3af; margin-bottom: 2rem;">Lucas Anderson's Year 8 learning journey</p>
+                <div style="margin-bottom: 2rem;">
+                    <a href="index.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">Home</a>
+                    <a href="blog.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">Daily Blog</a>
+                    <a href="about.html" style="color: #d1d5db; text-decoration: none; margin: 0 1rem;">About</a>
+                </div>
+                <p style="color: #6b7280;">&copy; 2025 Modern Schooling - Lucas Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
