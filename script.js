@@ -236,43 +236,59 @@ function selectTheme(theme) {
         }
     });
     
-    // Apply preview
+    // Apply theme immediately
     if (theme === 'auto') {
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const previewTheme = systemPrefersDark ? 'dark' : 'light';
-        applyTheme(previewTheme);
-    } else {
-        applyTheme(theme);
-    }
-}
-
-function applySelectedTheme() {
-    if (!selectedTheme) {
-        alert('Please select a theme first');
-        return;
-    }
-    
-    if (selectedTheme === 'auto') {
         localStorage.setItem('autoTheme', 'true');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = systemPrefersDark ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-        applyTheme(theme);
+        const actualTheme = systemPrefersDark ? 'dark' : 'light';
+        localStorage.setItem('theme', actualTheme);
+        applyTheme(actualTheme);
     } else {
         localStorage.setItem('autoTheme', 'false');
-        localStorage.setItem('theme', selectedTheme);
-        applyTheme(selectedTheme);
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
     }
     
-    // Show confirmation
-    const button = event.target;
-    const originalText = button.textContent;
-    button.textContent = 'Applied!';
-    button.style.background = '#10b981';
+    // Show brief confirmation
+    showThemeConfirmation(theme);
+}
+
+function showThemeConfirmation(theme) {
+    // Create or update confirmation message
+    let confirmation = document.getElementById('theme-confirmation');
+    if (!confirmation) {
+        confirmation = document.createElement('div');
+        confirmation.id = 'theme-confirmation';
+        confirmation.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        document.body.appendChild(confirmation);
+    }
     
+    // Update message based on theme
+    const themeNames = {
+        'light': 'Light Mode',
+        'dark': 'Dark Mode', 
+        'auto': 'Auto Mode'
+    };
+    
+    confirmation.textContent = `${themeNames[theme]} applied!`;
+    confirmation.style.transform = 'translateX(0)';
+    
+    // Hide after 2 seconds
     setTimeout(() => {
-        button.textContent = originalText;
-        button.style.background = '#6366f1';
+        confirmation.style.transform = 'translateX(100%)';
     }, 2000);
 }
 
