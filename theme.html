@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Settings - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Daily Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                </ul>
+                <div class="nav-right">
+                    <div class="settings-dropdown">
+                        <button class="settings-btn" onclick="toggleSettings()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                        <div class="settings-menu" id="settingsMenu">
+                            <a href="theme.html" class="settings-item">Theme</a>
+                            <a href="#" class="settings-item">Font Size</a>
+                            <a href="#" class="settings-item">Language</a>
+                            <a href="notifications.html" class="settings-item">Notifications</a>
+                            <hr class="settings-divider">
+                            <a href="account.html" class="settings-item">Account</a>
+                            <a href="#" class="settings-item">Help</a>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Theme Settings</h1>
+                <p class="hero-subtitle">Customize your visual experience</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: var(--bg-secondary); transition: background-color 0.3s ease;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Theme Selection -->
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                            </svg>
+                            Appearance Mode
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <!-- Light Theme Option -->
+                            <div class="theme-option" data-theme="light" onclick="selectTheme('light')" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2">
+                                            <circle cx="12" cy="12" r="5"></circle>
+                                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--text-primary); margin-bottom: 0.25rem; font-size: 1.1rem;">Light Mode</h4>
+                                        <p style="color: var(--text-tertiary); font-size: 14px; margin: 0;">Clean and bright interface</p>
+                                    </div>
+                                </div>
+                                <div class="theme-radio" style="width: 20px; height: 20px; border: 2px solid var(--border-color); border-radius: 50%; position: relative; transition: all 0.3s ease;">
+                                    <div class="theme-radio-inner" style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.3s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Dark Theme Option -->
+                            <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border: 1px solid #475569; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2">
+                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--text-primary); margin-bottom: 0.25rem; font-size: 1.1rem;">Dark Mode</h4>
+                                        <p style="color: var(--text-tertiary); font-size: 14px; margin: 0;">Easy on the eyes in low light</p>
+                                    </div>
+                                </div>
+                                <div class="theme-radio" style="width: 20px; height: 20px; border: 2px solid var(--border-color); border-radius: 50%; position: relative; transition: all 0.3s ease;">
+                                    <div class="theme-radio-inner" style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.3s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Auto Theme Option -->
+                            <div class="theme-option" data-theme="auto" onclick="selectTheme('auto')" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #ffffff 0%, #1e293b 100%); border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--text-primary); margin-bottom: 0.25rem; font-size: 1.1rem;">Auto Mode</h4>
+                                        <p style="color: var(--text-tertiary); font-size: 14px; margin: 0;">Follows your system preference</p>
+                                    </div>
+                                </div>
+                                <div class="theme-radio" style="width: 20px; height: 20px; border: 2px solid var(--border-color); border-radius: 50%; position: relative; transition: all 0.3s ease;">
+                                    <div class="theme-radio-inner" style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.3s ease;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme Preview -->
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                                <monitor width="20" height="14" x="2" y="3" rx="2" ry="2"></monitor>
+                                <path d="M8 21h8"></path>
+                                <path d="M12 17v4"></path>
+                            </svg>
+                            Preview
+                        </h3>
+                        <div style="background: var(--bg-secondary); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                                <div style="width: 32px; height: 32px; background: #6366f1; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 style="color: var(--text-primary); margin: 0; font-size: 1rem;">Sample Content</h4>
+                                    <p style="color: var(--text-tertiary); margin: 0; font-size: 14px;">This is how your content will look</p>
+                                </div>
+                            </div>
+                            <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                                This preview shows how the selected theme will appear across the website. 
+                                The colors, contrast, and overall appearance will update to match your choice.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Apply Button -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button onclick="applySelectedTheme()" style="background: #6366f1; color: white; padding: 12px 32px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; margin-right: 1rem; transition: all 0.3s ease; font-size: 16px;">Apply Theme</button>
+                        <a href="index.html" style="background: var(--bg-tertiary); color: var(--text-secondary); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--footer-bg); color: var(--footer-text); padding: 40px 0; text-align: center; transition: all 0.3s ease;">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <h3 style="margin-bottom: 1rem; color: var(--footer-text);">Modern Schooling</h3>
+                <p style="color: var(--footer-text-muted); margin-bottom: 2rem;">Lucas Anderson's Year 8 learning journey</p>
+                <div style="margin-bottom: 2rem;">
+                    <a href="index.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Home</a>
+                    <a href="blog.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Daily Blog</a>
+                    <a href="about.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">About</a>
+                </div>
+                <p style="color: var(--footer-text-muted);">&copy; 2025 Modern Schooling - Lucas Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

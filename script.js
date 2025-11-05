@@ -99,6 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize theme on page load
     initializeTheme();
+    
+    // Initialize theme page if we're on it
+    if (window.location.pathname.includes('theme.html')) {
+        initializeThemePage();
+    }
 });
 
 // Theme Management
@@ -208,3 +213,81 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
         localStorage.setItem('theme', theme);
     }
 });
+
+// Theme Page Functions
+let selectedTheme = null;
+
+function selectTheme(theme) {
+    selectedTheme = theme;
+    
+    // Update visual selection
+    document.querySelectorAll('.theme-option').forEach(option => {
+        const radio = option.querySelector('.theme-radio');
+        const radioInner = option.querySelector('.theme-radio-inner');
+        
+        if (option.dataset.theme === theme) {
+            option.style.border = '2px solid #6366f1';
+            option.style.background = 'rgba(99, 102, 241, 0.05)';
+            radioInner.style.opacity = '1';
+        } else {
+            option.style.border = '2px solid transparent';
+            option.style.background = 'var(--bg-secondary)';
+            radioInner.style.opacity = '0';
+        }
+    });
+    
+    // Apply preview
+    if (theme === 'auto') {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const previewTheme = systemPrefersDark ? 'dark' : 'light';
+        applyTheme(previewTheme);
+    } else {
+        applyTheme(theme);
+    }
+}
+
+function applySelectedTheme() {
+    if (!selectedTheme) {
+        alert('Please select a theme first');
+        return;
+    }
+    
+    if (selectedTheme === 'auto') {
+        localStorage.setItem('autoTheme', 'true');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = systemPrefersDark ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+    } else {
+        localStorage.setItem('autoTheme', 'false');
+        localStorage.setItem('theme', selectedTheme);
+        applyTheme(selectedTheme);
+    }
+    
+    // Show confirmation
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Applied!';
+    button.style.background = '#10b981';
+    
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '#6366f1';
+    }, 2000);
+}
+
+
+function initializeThemePage() {
+    const savedTheme = localStorage.getItem('theme');
+    const autoTheme = localStorage.getItem('autoTheme') === 'true';
+    
+    let currentSelection = 'light';
+    
+    if (autoTheme) {
+        currentSelection = 'auto';
+    } else if (savedTheme) {
+        currentSelection = savedTheme;
+    }
+    
+    selectTheme(currentSelection);
+}

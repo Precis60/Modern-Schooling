@@ -34,13 +34,7 @@
                             </svg>
                         </button>
                         <div class="settings-menu" id="settingsMenu">
-                            <button class="settings-item theme-toggle" onclick="toggleTheme()" id="themeToggle">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                                </svg>
-                                <span id="themeText">Light Mode</span>
-                            </button>
+                            <a href="theme.html" class="settings-item">Theme</a>
                             <a href="#" class="settings-item">Font Size</a>
                             <a href="#" class="settings-item">Language</a>
                             <a href="notifications.html" class="settings-item">Notifications</a>
@@ -126,43 +120,7 @@
                         </div>
                     </div>
 
-                    <!-- Theme Preferences -->
-                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
-                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                            </svg>
-                            Theme Preferences
-                        </h3>
-                        <div style="display: grid; gap: 1rem;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; transition: background-color 0.3s ease;">
-                                <div>
-                                    <label style="font-weight: 500; color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Appearance</label>
-                                    <span style="color: var(--text-tertiary); font-size: 14px;">Choose your preferred theme</span>
-                                </div>
-                                <button class="theme-toggle-btn" onclick="toggleTheme()" id="accountThemeToggle" style="background: #6366f1; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: background-color 0.3s ease;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="accountThemeIcon">
-                                        <circle cx="12" cy="12" r="5"></circle>
-                                        <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                                    </svg>
-                                    <span id="accountThemeText">Switch to Dark</span>
-                                </button>
-                            </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; transition: background-color 0.3s ease;">
-                                <div>
-                                    <label style="font-weight: 500; color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Auto Theme</label>
-                                    <span style="color: var(--text-tertiary); font-size: 14px;">Follow system preference</span>
-                                </div>
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="checkbox" id="autoTheme" style="margin-right: 0.5rem;" onchange="toggleAutoTheme()">
-                                    <span style="color: var(--text-secondary);">Enable</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Privacy Settings -->
+<!-- Privacy Settings -->
                     <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
                         <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
