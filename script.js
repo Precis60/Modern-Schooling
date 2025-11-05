@@ -96,4 +96,115 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    // Initialize theme on page load
+    initializeTheme();
+});
+
+// Theme Management
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const autoTheme = localStorage.getItem('autoTheme') === 'true';
+    
+    let theme = 'light';
+    
+    if (autoTheme) {
+        theme = systemPrefersDark ? 'dark' : 'light';
+        // Update auto theme checkbox if on account page
+        const autoThemeCheckbox = document.getElementById('autoTheme');
+        if (autoThemeCheckbox) {
+            autoThemeCheckbox.checked = true;
+        }
+    } else if (savedTheme) {
+        theme = savedTheme;
+    }
+    
+    applyTheme(theme);
+    updateThemeUI(theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    // Disable auto theme when manually toggling
+    localStorage.setItem('autoTheme', 'false');
+    const autoThemeCheckbox = document.getElementById('autoTheme');
+    if (autoThemeCheckbox) {
+        autoThemeCheckbox.checked = false;
+    }
+    
+    applyTheme(newTheme);
+    updateThemeUI(newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+}
+
+function updateThemeUI(theme) {
+    // Update settings dropdown theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeText = document.getElementById('themeText');
+    const themeIcon = themeToggle?.querySelector('svg');
+    
+    // Update account page theme toggle
+    const accountThemeToggle = document.getElementById('accountThemeToggle');
+    const accountThemeText = document.getElementById('accountThemeText');
+    const accountThemeIcon = document.getElementById('accountThemeIcon');
+    
+    if (theme === 'dark') {
+        // Update settings dropdown
+        if (themeText) themeText.textContent = 'Dark Mode';
+        if (themeIcon) {
+            themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+        
+        // Update account page
+        if (accountThemeText) accountThemeText.textContent = 'Switch to Light';
+        if (accountThemeIcon) {
+            accountThemeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+    } else {
+        // Update settings dropdown
+        if (themeText) themeText.textContent = 'Light Mode';
+        if (themeIcon) {
+            themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+        }
+        
+        // Update account page
+        if (accountThemeText) accountThemeText.textContent = 'Switch to Dark';
+        if (accountThemeIcon) {
+            accountThemeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+        }
+    }
+}
+
+function toggleAutoTheme() {
+    const autoThemeCheckbox = document.getElementById('autoTheme');
+    const isAutoTheme = autoThemeCheckbox?.checked || false;
+    
+    localStorage.setItem('autoTheme', isAutoTheme.toString());
+    
+    if (isAutoTheme) {
+        // Apply system preference
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = systemPrefersDark ? 'dark' : 'light';
+        applyTheme(theme);
+        updateThemeUI(theme);
+        localStorage.setItem('theme', theme);
+    }
+}
+
+// Listen for system theme changes when auto theme is enabled
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    const autoTheme = localStorage.getItem('autoTheme') === 'true';
+    if (autoTheme) {
+        const theme = e.matches ? 'dark' : 'light';
+        applyTheme(theme);
+        updateThemeUI(theme);
+        localStorage.setItem('theme', theme);
+    }
 });
