@@ -274,6 +274,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+[data-theme="dark"] .nav-btn {
+    color: #000000;
+}
+
 .nav-btn:hover {
     color: #6366f1;
     transform: scale(1.05);
@@ -298,6 +302,8 @@ body {
     transition: all 0.3s ease;
     z-index: 1000;
     margin-top: 4px;
+    max-width: calc(100vw - 20px);
+    left: auto;
 }
 
 .nav-menu-dropdown.show {
@@ -347,6 +353,19 @@ body {
     transition: all 0.3s ease;
     z-index: 1001;
     margin-left: 8px;
+    max-width: calc(100vw - 340px);
+}
+
+@media (max-width: 768px) {
+    .submenu-dropdown {
+        left: -160px;
+        margin-left: 0;
+        transform: translateX(10px);
+    }
+    
+    .submenu-dropdown.show {
+        transform: translateX(0);
+    }
 }
 
 .submenu-dropdown.show {
