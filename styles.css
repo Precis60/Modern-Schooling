@@ -65,19 +65,27 @@ body {
 
 /* Navigation */
 .navbar {
-    background: var(--navbar-bg);
-    backdrop-filter: saturate(180%) blur(12px);
-    box-shadow: 0 2px 12px var(--shadow-medium);
+    background: var(--bg-primary);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-    background: var(--navbar-bg-scrolled);
-    box-shadow: 0 6px 20px var(--shadow-heavy);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(45, 45, 45, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
