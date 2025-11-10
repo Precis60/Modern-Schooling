@@ -395,11 +395,15 @@ body {
 
 /* Dark mode navbar styling */
 [data-theme="dark"] .navbar {
-    background: #1a1a1a;
+    background: #000000;
     border-bottom: 1px solid #333;
 }
 
 [data-theme="dark"] .nav-logo h1 {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .nav-logo h1 a {
     color: #ffffff;
 }
 
