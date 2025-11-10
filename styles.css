@@ -393,19 +393,14 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-[data-theme="dark"] .hero {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    color: #ffffff;
+/* Dark mode navbar styling */
+[data-theme="dark"] .navbar {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
 }
 
-[data-theme="dark"] .hero h1,
-[data-theme="dark"] .hero h2 {
+[data-theme="dark"] .nav-logo h1 {
     color: #ffffff;
-}
-
-[data-theme="dark"] .hero .hero-subtitle,
-[data-theme="dark"] .hero .year {
-    color: #e5e5e5;
 }
 
 .hero::before {
