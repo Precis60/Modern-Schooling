@@ -61,6 +61,13 @@ function toggleNavigation() {
     navMenu.classList.toggle('show');
 }
 
+// Submenu functionality
+function toggleSubmenu(event) {
+    event.stopPropagation(); // Prevent closing the main menu
+    const submenu = document.getElementById('settingsSubmenu');
+    submenu.classList.toggle('show');
+}
+
 // Mobile settings functionality
 function toggleMobileSettings() {
     const mobileSettingsMenu = document.getElementById('mobileSettingsMenu');
@@ -73,6 +80,7 @@ document.addEventListener('click', function(event) {
     const settingsMenu = document.getElementById('settingsMenu');
     const navDropdown = document.querySelector('.nav-dropdown');
     const navMenu = document.getElementById('navMenu');
+    const settingsSubmenu = document.getElementById('settingsSubmenu');
     
     if (!settingsDropdown?.contains(event.target)) {
         settingsMenu?.classList.remove('show');
@@ -80,6 +88,7 @@ document.addEventListener('click', function(event) {
     
     if (!navDropdown?.contains(event.target)) {
         navMenu?.classList.remove('show');
+        settingsSubmenu?.classList.remove('show');
     }
 });
 
