@@ -14,18 +14,20 @@
                 <div class="nav-logo">
                     <a href="index.html"><h1>Modern Schooling</h1></a>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Daily Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="about.html" class="nav-link active">About</a>
-                    </li>
-                </ul>
                 <div class="nav-right">
+                    <div class="nav-dropdown">
+                        <button class="nav-btn" onclick="toggleNavigation()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12h18m-9-9v18"></path>
+                            </svg>
+                            <span>Menu</span>
+                        </button>
+                        <div class="nav-menu-dropdown" id="navMenu">
+                            <a href="index.html" class="nav-item-dropdown">Home</a>
+                            <a href="blog.html" class="nav-item-dropdown">Daily Blog</a>
+                            <a href="about.html" class="nav-item-dropdown">About</a>
+                        </div>
+                    </div>
                     <div class="settings-dropdown">
                         <button class="settings-btn" onclick="toggleSettings()">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

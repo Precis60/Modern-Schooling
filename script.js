@@ -55,19 +55,31 @@ function toggleSettings() {
     settingsMenu.classList.toggle('show');
 }
 
+// Navigation dropdown functionality
+function toggleNavigation() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.toggle('show');
+}
+
 // Mobile settings functionality
 function toggleMobileSettings() {
     const mobileSettingsMenu = document.getElementById('mobileSettingsMenu');
     mobileSettingsMenu.classList.toggle('show');
 }
 
-// Close settings dropdown when clicking outside
+// Close dropdowns when clicking outside
 document.addEventListener('click', function(event) {
     const settingsDropdown = document.querySelector('.settings-dropdown');
     const settingsMenu = document.getElementById('settingsMenu');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navMenu = document.getElementById('navMenu');
     
-    if (!settingsDropdown.contains(event.target)) {
-        settingsMenu.classList.remove('show');
+    if (!settingsDropdown?.contains(event.target)) {
+        settingsMenu?.classList.remove('show');
+    }
+    
+    if (!navDropdown?.contains(event.target)) {
+        navMenu?.classList.remove('show');
     }
 });
 
