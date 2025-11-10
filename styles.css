@@ -395,16 +395,21 @@ body {
 
 /* Dark mode navbar styling */
 [data-theme="dark"] .navbar {
-    background: #000000;
-    border-bottom: 1px solid #333;
+    background: #000000 !important;
+    border-bottom: 1px solid #333 !important;
 }
 
 [data-theme="dark"] .nav-logo h1 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 [data-theme="dark"] .nav-logo h1 a {
-    color: #ffffff;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+[data-theme="dark"] .nav-logo a {
+    color: #ffffff !important;
 }
 
 .hero::before {
