@@ -92,17 +92,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    const scrolled = window.scrollY;
-    
-    if (scrolled > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
 
 // Scroll animations
 const observerOptions = {
