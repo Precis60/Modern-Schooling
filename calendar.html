@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-dropdown">
+                        <button class="nav-btn" onclick="toggleNavigation()">
+                            Menu
+                        </button>
+                        <div class="nav-menu-dropdown" id="navMenu">
+                            <a href="index.html" class="nav-item-dropdown">Home</a>
+                            <a href="blog.html" class="nav-item-dropdown">Daily Blog</a>
+                            <a href="about.html" class="nav-item-dropdown">About</a>
+                            <a href="activities.html" class="nav-item-dropdown">Activities</a>
+                            <a href="calendar.html" class="nav-item-dropdown">Calendar</a>
+                            <div class="nav-item-dropdown submenu-item" onclick="toggleSubmenu(event)">
+                                Settings
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: auto;">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                                <div class="submenu-dropdown" id="settingsSubmenu">
+                                    <a href="theme.html" class="submenu-item-link">Theme</a>
+                                    <a href="#" class="submenu-item-link">Font Size</a>
+                                    <a href="#" class="submenu-item-link">Language</a>
+                                    <a href="notifications.html" class="submenu-item-link">Notifications</a>
+                                    <a href="account.html" class="submenu-item-link">Account</a>
+                                    <a href="#" class="submenu-item-link">Help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>School Calendar</h1>
+                <p class="hero-subtitle">Stay organized with your academic schedule</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: var(--bg-secondary); transition: background-color 0.3s ease;">
+            <div class="container">
+                <div style="max-width: 1200px; margin: 0 auto;">
+                    
+                    <!-- Calendar Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <button id="prevMonth" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem; cursor: pointer; color: var(--text-primary);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"></path>
+                                </svg>
+                            </button>
+                            <h2 id="currentMonth" style="color: var(--text-primary); margin: 0; font-size: 1.5rem; font-weight: 600;"></h2>
+                            <button id="nextMonth" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem; cursor: pointer; color: var(--text-primary);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <button id="todayBtn" style="background: #3b82f6; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Today</button>
+                    </div>
+
+                    <!-- Calendar Grid -->
+                    <div style="background: var(--bg-tertiary); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <!-- Days of Week Header -->
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-bottom: 1rem;">
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Sun</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Mon</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Tue</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Wed</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Thu</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Fri</div>
+                            <div style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-secondary);">Sat</div>
+                        </div>
+                        
+                        <!-- Calendar Days -->
+                        <div id="calendarDays" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--border-color);">
+                            <!-- Days will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events -->
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.75rem; color: #ef4444;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Upcoming Events
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #10b981;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">Math Test - Chapter 5</h4>
+                                    <span style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 12</span>
+                                </div>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Algebra and Geometry • Room 204 • 9:00 AM</p>
+                            </div>
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">Science Fair</h4>
+                                    <span style="background: #3b82f6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 15</span>
+                                </div>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Project presentations • School Gymnasium • 2:00 PM</p>
+                            </div>
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">Winter Concert</h4>
+                                    <span style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 20</span>
+                                </div>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">School choir performance • Auditorium • 7:00 PM</p>
+                            </div>
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">Winter Break Begins</h4>
+                                    <span style="background: #8b5cf6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 21</span>
+                                </div>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Last day of classes • School ends at 12:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 12px; text-align: center; transition: background-color 0.3s ease;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">8</div>
+                            <div style="color: var(--text-secondary); font-size: 14px;">Days Until Break</div>
+                        </div>
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 12px; text-align: center; transition: background-color 0.3s ease;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem;">3</div>
+                            <div style="color: var(--text-secondary); font-size: 14px;">Upcoming Tests</div>
+                        </div>
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 12px; text-align: center; transition: background-color 0.3s ease;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">5</div>
+                            <div style="color: var(--text-secondary); font-size: 14px;">School Events</div>
+                        </div>
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 12px; text-align: center; transition: background-color 0.3s ease;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #ef4444; margin-bottom: 0.5rem;">2</div>
+                            <div style="color: var(--text-secondary); font-size: 14px;">Assignments Due</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--footer-bg); color: var(--footer-text); padding: 40px 0; text-align: center; transition: background-color 0.3s ease, color 0.3s ease;">
+        <div class="container">
+            <p style="margin: 0; opacity: 0.8;">&copy; 2024 Modern Schooling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Calendar functionality
+        let currentDate = new Date();
+        
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            // Update month header
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            // Clear calendar
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.style.cssText = 'background: var(--bg-secondary); padding: 1rem; min-height: 60px;';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const isToday = today.getFullYear() === year && 
+                               today.getMonth() === month && 
+                               today.getDate() === day;
+                
+                dayElement.style.cssText = `
+                    background: var(--bg-secondary);
+                    padding: 1rem;
+                    min-height: 60px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    position: relative;
+                    ${isToday ? 'background: #3b82f6; color: white; font-weight: 600;' : ''}
+                `;
+                
+                dayElement.innerHTML = `<div style="color: ${isToday ? 'white' : 'var(--text-primary)'};">${day}</div>`;
+                
+                // Add hover effect
+                dayElement.addEventListener('mouseenter', () => {
+                    if (!isToday) {
+                        dayElement.style.background = 'var(--bg-tertiary)';
+                    }
+                });
+                
+                dayElement.addEventListener('mouseleave', () => {
+                    if (!isToday) {
+                        dayElement.style.background = 'var(--bg-secondary)';
+                    }
+                });
+                
+                calendarDays.appendChild(dayElement);
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+        
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+        
+        document.getElementById('todayBtn').addEventListener('click', () => {
+            currentDate = new Date();
+            renderCalendar();
+        });
+        
+        // Initialize calendar
+        renderCalendar();
+    </script>
+</body>
+</html>
