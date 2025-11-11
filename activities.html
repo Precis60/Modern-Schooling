@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-dropdown">
+                        <button class="nav-btn" onclick="toggleNavigation()">
+                            Menu
+                        </button>
+                        <div class="nav-menu-dropdown" id="navMenu">
+                            <a href="index.html" class="nav-item-dropdown">Home</a>
+                            <a href="blog.html" class="nav-item-dropdown">Daily Blog</a>
+                            <a href="about.html" class="nav-item-dropdown">About</a>
+                            <a href="activities.html" class="nav-item-dropdown">Activities</a>
+                            <div class="nav-item-dropdown submenu-item" onclick="toggleSubmenu(event)">
+                                Settings
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: auto;">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                                <div class="submenu-dropdown" id="settingsSubmenu">
+                                    <a href="theme.html" class="submenu-item-link">Theme</a>
+                                    <a href="#" class="submenu-item-link">Font Size</a>
+                                    <a href="#" class="submenu-item-link">Language</a>
+                                    <a href="notifications.html" class="submenu-item-link">Notifications</a>
+                                    <a href="account.html" class="submenu-item-link">Account</a>
+                                    <a href="#" class="submenu-item-link">Help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>School Activities</h1>
+                <p class="hero-subtitle">Explore extracurricular activities and school events</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: var(--bg-secondary); transition: background-color 0.3s ease;">
+            <div class="container">
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    
+                    <!-- Activities Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                        
+                        <!-- Sports Activities -->
+                        <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; transition: background-color 0.3s ease;">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.75rem; color: #10b981;">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                                Sports & Athletics
+                            </h3>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🏀 Basketball Team</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">⚽ Soccer Club</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🏃‍♂️ Track & Field</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🏊‍♀️ Swimming Team</li>
+                                <li style="padding: 0.75rem 0; color: var(--text-secondary);">🎾 Tennis Club</li>
+                            </ul>
+                        </div>
+
+                        <!-- Academic Clubs -->
+                        <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; transition: background-color 0.3s ease;">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.75rem; color: #3b82f6;">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                                Academic Clubs
+                            </h3>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🧪 Science Club</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">📊 Math Olympiad</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">💻 Coding Club</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🗣️ Debate Team</li>
+                                <li style="padding: 0.75rem 0; color: var(--text-secondary);">📚 Book Club</li>
+                            </ul>
+                        </div>
+
+                        <!-- Creative Arts -->
+                        <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; transition: background-color 0.3s ease;">
+                            <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.75rem; color: #f59e0b;">
+                                    <path d="M9 9h6l-6 6h6"></path>
+                                    <path d="M6.5 15.5L3 12l3.5-3.5"></path>
+                                    <path d="M17.5 8.5L21 12l-3.5 3.5"></path>
+                                </svg>
+                                Creative Arts
+                            </h3>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🎭 Drama Club</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🎵 School Choir</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">🎨 Art Club</li>
+                                <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">📷 Photography Club</li>
+                                <li style="padding: 0.75rem 0; color: var(--text-secondary);">✍️ Creative Writing</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Upcoming Events -->
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.75rem; color: #ef4444;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Upcoming Events
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #10b981;">
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Science Fair</h4>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">December 15, 2024 • School Gymnasium</p>
+                            </div>
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Winter Concert</h4>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">December 20, 2024 • School Auditorium</p>
+                            </div>
+                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Basketball Championship</h4>
+                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">January 10, 2025 • Sports Complex</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--footer-bg); color: var(--footer-text); padding: 40px 0; text-align: center; transition: background-color 0.3s ease, color 0.3s ease;">
+        <div class="container">
+            <p style="margin: 0; opacity: 0.8;">&copy; 2024 Modern Schooling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
