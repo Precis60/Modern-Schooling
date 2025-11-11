@@ -390,24 +390,6 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode navbar styling */
-[data-theme="dark"] .navbar {
-    background: var(--bg-primary) !important;
-    border-bottom: 1px solid var(--border-color) !important;
-}
-
-[data-theme="dark"] .nav-logo h1 {
-    color: var(--text-primary) !important;
-}
-
-[data-theme="dark"] .nav-logo h1 a {
-    color: var(--text-primary) !important;
-    text-decoration: none;
-}
-
-[data-theme="dark"] .nav-logo a {
-    color: var(--text-primary) !important;
-}
 
 .hero::before {
     content: '';
