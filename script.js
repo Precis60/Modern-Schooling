@@ -31,14 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scrolled state
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
 
 // Add active state to current page
 const currentLocation = location.pathname;
