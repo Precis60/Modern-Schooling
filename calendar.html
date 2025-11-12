@@ -613,11 +613,11 @@
         
         document.addEventListener('mouseup', () => {
             if (isDragging) {
-                // After letting go, wait 0.75 seconds then switch to minute mode (if in hour mode)
+                // After letting go, wait 0.60 seconds then switch to minute mode (if in hour mode)
                 if (clockMode === 'hour') {
                     holdTimer = setTimeout(() => {
                         switchToMinuteMode();
-                    }, 750);
+                    }, 600);
                 }
             }
             
