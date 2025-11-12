@@ -182,30 +182,31 @@
                             <!-- Clock face -->
                             <svg width="140" height="140" style="position: absolute; top: 0; left: 0;">
                                 <!-- Hour markers -->
-                                <g stroke="var(--text-tertiary)" stroke-width="1">
-                                    <line x1="70" y1="10" x2="70" y2="20" />
-                                    <line x1="121" y1="35" x2="111" y2="40" />
-                                    <line x1="130" y1="70" x2="120" y2="70" />
-                                    <line x1="121" y1="105" x2="111" y2="100" />
-                                    <line x1="70" y1="130" x2="70" y2="120" />
-                                    <line x1="29" y1="105" x2="39" y2="100" />
-                                    <line x1="10" y1="70" x2="20" y2="70" />
-                                    <line x1="29" y1="35" x2="39" y2="40" />
-                                </g>
-                                <!-- Clock numbers -->
-                                <g fill="var(--text-primary)" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle" dominant-baseline="central">
-                                    <text x="70" y="18">12</text>
-                                    <text x="105" y="25">1</text>
-                                    <text x="125" y="45">2</text>
-                                    <text x="132" y="74">3</text>
-                                    <text x="125" y="100">4</text>
-                                    <text x="105" y="118">5</text>
-                                    <text x="70" y="125">6</text>
-                                    <text x="35" y="118">7</text>
-                                    <text x="15" y="100">8</text>
-                                    <text x="8" y="74">9</text>
-                                    <text x="15" y="45">10</text>
-                                    <text x="35" y="25">11</text>
+                                <g stroke="var(--text-tertiary)" stroke-width="2">
+                                    <!-- 12 o'clock -->
+                                    <line x1="70" y1="8" x2="70" y2="18" />
+                                    <!-- 1 o'clock -->
+                                    <line x1="104.5" y1="18.5" x2="99.5" y2="26.5" />
+                                    <!-- 2 o'clock -->
+                                    <line x1="121.5" y1="35.5" x2="113.5" y2="40.5" />
+                                    <!-- 3 o'clock -->
+                                    <line x1="132" y1="70" x2="122" y2="70" />
+                                    <!-- 4 o'clock -->
+                                    <line x1="121.5" y1="104.5" x2="113.5" y2="99.5" />
+                                    <!-- 5 o'clock -->
+                                    <line x1="104.5" y1="121.5" x2="99.5" y2="113.5" />
+                                    <!-- 6 o'clock -->
+                                    <line x1="70" y1="132" x2="70" y2="122" />
+                                    <!-- 7 o'clock -->
+                                    <line x1="35.5" y1="121.5" x2="40.5" y2="113.5" />
+                                    <!-- 8 o'clock -->
+                                    <line x1="18.5" y1="104.5" x2="26.5" y2="99.5" />
+                                    <!-- 9 o'clock -->
+                                    <line x1="8" y1="70" x2="18" y2="70" />
+                                    <!-- 10 o'clock -->
+                                    <line x1="18.5" y1="35.5" x2="26.5" y2="40.5" />
+                                    <!-- 11 o'clock -->
+                                    <line x1="35.5" y1="18.5" x2="40.5" y2="26.5" />
                                 </g>
                                 <!-- Single hand -->
                                 <line id="clockHand" x1="70" y1="70" x2="70" y2="40" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
@@ -213,7 +214,7 @@
                                 <circle cx="70" cy="70" r="4" fill="var(--text-primary)" />
                             </svg>
                             <!-- Mode indicator -->
-                            <div id="modeIndicator" style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600;">HOUR</div>
+                            <div id="modeIndicator" style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 4px; border-radius: 50%; width: 8px; height: 8px;"></div>
                         </div>
                         
                         <!-- Digital display and controls -->
@@ -541,13 +542,13 @@
                 angle = ((currentHour % 12) * 30) + (currentMinute * 0.5) - 90;
                 handLength = 25;
                 color = '#3b82f6';
-                modeIndicator.textContent = 'HOUR';
+                modeIndicator.textContent = '';
                 modeIndicator.style.background = '#3b82f6';
             } else {
                 angle = (currentMinute * 6) - 90;
                 handLength = 40;
                 color = '#10b981';
-                modeIndicator.textContent = 'MINUTE';
+                modeIndicator.textContent = '';
                 modeIndicator.style.background = '#10b981';
             }
             
