@@ -208,13 +208,26 @@
                                     <!-- 11 o'clock -->
                                     <line x1="35.5" y1="18.5" x2="40.5" y2="26.5" />
                                 </g>
+                                <!-- Clock numbers -->
+                                <g fill="var(--text-primary)" font-family="Inter, sans-serif" font-size="14" font-weight="600" text-anchor="middle" dominant-baseline="central">
+                                    <text x="70" y="18">12</text>
+                                    <text x="105" y="25">1</text>
+                                    <text x="125" y="45">2</text>
+                                    <text x="132" y="74">3</text>
+                                    <text x="125" y="100">4</text>
+                                    <text x="105" y="118">5</text>
+                                    <text x="70" y="125">6</text>
+                                    <text x="35" y="118">7</text>
+                                    <text x="15" y="100">8</text>
+                                    <text x="8" y="74">9</text>
+                                    <text x="15" y="45">10</text>
+                                    <text x="35" y="25">11</text>
+                                </g>
                                 <!-- Single hand -->
                                 <line id="clockHand" x1="70" y1="70" x2="70" y2="40" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
                                 <!-- Center dot -->
                                 <circle cx="70" cy="70" r="4" fill="var(--text-primary)" />
                             </svg>
-                            <!-- Mode indicator -->
-                            <div id="modeIndicator" style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 4px; border-radius: 50%; width: 8px; height: 8px;"></div>
                         </div>
                         
                         <!-- Digital display and controls -->
@@ -534,7 +547,6 @@
         
         function updateClockHand() {
             const clockHand = document.getElementById('clockHand');
-            const modeIndicator = document.getElementById('modeIndicator');
             
             let angle, handLength, color;
             
@@ -542,14 +554,10 @@
                 angle = ((currentHour % 12) * 30) + (currentMinute * 0.5) - 90;
                 handLength = 25;
                 color = '#3b82f6';
-                modeIndicator.textContent = '';
-                modeIndicator.style.background = '#3b82f6';
             } else {
                 angle = (currentMinute * 6) - 90;
                 handLength = 40;
                 color = '#10b981';
-                modeIndicator.textContent = '';
-                modeIndicator.style.background = '#10b981';
             }
             
             // Calculate hand position
