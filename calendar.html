@@ -78,7 +78,16 @@
                                 </svg>
                             </button>
                         </div>
-                        <button id="todayBtn" style="background: #3b82f6; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Today</button>
+                        <div style="display: flex; gap: 1rem;">
+                            <button id="addEventBtn" style="background: #10b981; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Add Event
+                            </button>
+                            <button id="todayBtn" style="background: #3b82f6; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Today</button>
+                        </div>
                     </div>
 
                     <!-- Calendar Grid -->
@@ -111,35 +120,8 @@
                             </svg>
                             Upcoming Events
                         </h3>
-                        <div style="display: grid; gap: 1rem;">
-                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #10b981;">
-                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                                    <h4 style="margin: 0; color: var(--text-primary);">Math Test - Chapter 5</h4>
-                                    <span style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 12</span>
-                                </div>
-                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Algebra and Geometry • Room 204 • 9:00 AM</p>
-                            </div>
-                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #3b82f6;">
-                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                                    <h4 style="margin: 0; color: var(--text-primary);">Science Fair</h4>
-                                    <span style="background: #3b82f6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 15</span>
-                                </div>
-                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Project presentations • School Gymnasium • 2:00 PM</p>
-                            </div>
-                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #f59e0b;">
-                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                                    <h4 style="margin: 0; color: var(--text-primary);">Winter Concert</h4>
-                                    <span style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 20</span>
-                                </div>
-                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">School choir performance • Auditorium • 7:00 PM</p>
-                            </div>
-                            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                                    <h4 style="margin: 0; color: var(--text-primary);">Winter Break Begins</h4>
-                                    <span style="background: #8b5cf6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">Dec 21</span>
-                                </div>
-                                <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">Last day of classes • School ends at 12:00 PM</p>
-                            </div>
+                        <div id="upcomingEventsList" style="display: grid; gap: 1rem;">
+                            <!-- Events will be populated by JavaScript -->
                         </div>
                     </div>
 
@@ -168,6 +150,59 @@
         </section>
     </main>
 
+    <!-- Add Event Modal -->
+    <div id="eventModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; backdrop-filter: blur(4px);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-primary); border-radius: 16px; padding: 2rem; width: 90%; max-width: 500px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0; color: var(--text-primary); font-size: 1.25rem; font-weight: 600;">Add New Event</h3>
+                <button id="closeModal" style="background: none; border: none; cursor: pointer; color: var(--text-tertiary); padding: 0.5rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="eventForm">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Event Title</label>
+                    <input type="text" id="eventTitle" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Date</label>
+                    <input type="date" id="eventDate" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Time (Optional)</label>
+                    <input type="time" id="eventTime" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Description (Optional)</label>
+                    <textarea id="eventDescription" rows="3" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Category</label>
+                    <select id="eventCategory" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem;">
+                        <option value="assignment">Assignment</option>
+                        <option value="test">Test/Exam</option>
+                        <option value="event">School Event</option>
+                        <option value="personal">Personal</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" id="cancelEvent" style="background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Cancel</button>
+                    <button type="submit" style="background: #10b981; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Add Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <footer style="background: var(--footer-bg); color: var(--footer-text); padding: 40px 0; text-align: center; transition: background-color 0.3s ease, color 0.3s ease;">
         <div class="container">
             <p style="margin: 0; opacity: 0.8;">&copy; 2024 Modern Schooling. All rights reserved.</p>
@@ -176,8 +211,28 @@
 
     <script src="script.js"></script>
     <script>
-        // Calendar functionality
+        // Calendar functionality with event management
         let currentDate = new Date();
+        let events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+        let selectedDate = null;
+        
+        // Category colors
+        const categoryColors = {
+            assignment: '#ef4444',
+            test: '#f59e0b',
+            event: '#3b82f6',
+            personal: '#8b5cf6',
+            other: '#10b981'
+        };
+        
+        function saveEvents() {
+            localStorage.setItem('calendarEvents', JSON.stringify(events));
+        }
+        
+        function getEventsForDate(date) {
+            const dateStr = date.toISOString().split('T')[0];
+            return events.filter(event => event.date === dateStr);
+        }
         
         function renderCalendar() {
             const year = currentDate.getFullYear();
@@ -200,28 +255,55 @@
             // Add empty cells for days before month starts
             for (let i = 0; i < firstDay; i++) {
                 const emptyDay = document.createElement('div');
-                emptyDay.style.cssText = 'background: var(--bg-secondary); padding: 1rem; min-height: 60px;';
+                emptyDay.style.cssText = 'background: var(--bg-secondary); padding: 1rem; min-height: 80px;';
                 calendarDays.appendChild(emptyDay);
             }
             
             // Add days of month
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
+                const currentDayDate = new Date(year, month, day);
                 const isToday = today.getFullYear() === year && 
                                today.getMonth() === month && 
                                today.getDate() === day;
                 
+                const dayEvents = getEventsForDate(currentDayDate);
+                
                 dayElement.style.cssText = `
                     background: var(--bg-secondary);
-                    padding: 1rem;
-                    min-height: 60px;
+                    padding: 0.5rem;
+                    min-height: 80px;
                     cursor: pointer;
                     transition: all 0.2s ease;
                     position: relative;
+                    display: flex;
+                    flex-direction: column;
                     ${isToday ? 'background: #3b82f6; color: white; font-weight: 600;' : ''}
                 `;
                 
-                dayElement.innerHTML = `<div style="color: ${isToday ? 'white' : 'var(--text-primary)'};">${day}</div>`;
+                let dayContent = `<div style="color: ${isToday ? 'white' : 'var(--text-primary)'}; font-weight: ${isToday ? '600' : '400'}; margin-bottom: 0.25rem;">${day}</div>`;
+                
+                // Add event indicators
+                if (dayEvents.length > 0) {
+                    dayContent += '<div style="flex: 1; display: flex; flex-direction: column; gap: 1px;">';
+                    dayEvents.slice(0, 3).forEach(event => {
+                        const color = categoryColors[event.category] || '#10b981';
+                        dayContent += `<div style="background: ${color}; color: white; padding: 1px 4px; border-radius: 2px; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${event.title}">${event.title}</div>`;
+                    });
+                    if (dayEvents.length > 3) {
+                        dayContent += `<div style="color: var(--text-tertiary); font-size: 10px;">+${dayEvents.length - 3} more</div>`;
+                    }
+                    dayContent += '</div>';
+                }
+                
+                dayElement.innerHTML = dayContent;
+                
+                // Add click event to open modal with selected date
+                dayElement.addEventListener('click', () => {
+                    selectedDate = currentDayDate;
+                    document.getElementById('eventDate').value = currentDayDate.toISOString().split('T')[0];
+                    document.getElementById('eventModal').style.display = 'block';
+                });
                 
                 // Add hover effect
                 dayElement.addEventListener('mouseenter', () => {
@@ -238,9 +320,127 @@
                 
                 calendarDays.appendChild(dayElement);
             }
+            
+            updateUpcomingEvents();
         }
         
-        // Event listeners
+        function updateUpcomingEvents() {
+            const upcomingEventsList = document.getElementById('upcomingEventsList');
+            upcomingEventsList.innerHTML = '';
+            
+            // Static events (existing school events)
+            const staticEvents = [
+                { title: 'Math Test - Chapter 5', date: '2024-12-12', description: 'Algebra and Geometry • Room 204 • 9:00 AM', category: 'test' },
+                { title: 'Science Fair', date: '2024-12-15', description: 'Project presentations • School Gymnasium • 2:00 PM', category: 'event' },
+                { title: 'Winter Concert', date: '2024-12-20', description: 'School choir performance • Auditorium • 7:00 PM', category: 'event' },
+                { title: 'Winter Break Begins', date: '2024-12-21', description: 'Last day of classes • School ends at 12:00 PM', category: 'other' }
+            ];
+            
+            // Combine static events with user events
+            const allEvents = [...staticEvents, ...events];
+            
+            // Filter and sort upcoming events (next 30 days)
+            const today = new Date();
+            const thirtyDaysFromNow = new Date();
+            thirtyDaysFromNow.setDate(today.getDate() + 30);
+            
+            const upcomingEvents = allEvents
+                .filter(event => {
+                    const eventDate = new Date(event.date);
+                    return eventDate >= today && eventDate <= thirtyDaysFromNow;
+                })
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 6); // Show max 6 events
+            
+            if (upcomingEvents.length === 0) {
+                upcomingEventsList.innerHTML = '<p style="color: var(--text-tertiary); text-align: center; margin: 2rem 0;">No upcoming events</p>';
+                return;
+            }
+            
+            upcomingEvents.forEach(event => {
+                const eventDate = new Date(event.date);
+                const dateStr = eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const color = categoryColors[event.category] || '#10b981';
+                
+                const eventElement = document.createElement('div');
+                eventElement.style.cssText = `padding: 1rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid ${color};`;
+                
+                let timeInfo = '';
+                if (event.time) {
+                    const time = new Date(`2000-01-01T${event.time}`).toLocaleTimeString('en-US', { 
+                        hour: 'numeric', 
+                        minute: '2-digit', 
+                        hour12: true 
+                    });
+                    timeInfo = ` • ${time}`;
+                }
+                
+                eventElement.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h4 style="margin: 0; color: var(--text-primary);">${event.title}</h4>
+                        <span style="background: ${color}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">${dateStr}</span>
+                    </div>
+                    <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">${event.description || 'No description'}${timeInfo}</p>
+                `;
+                
+                upcomingEventsList.appendChild(eventElement);
+            });
+        }
+        
+        // Modal functionality
+        document.getElementById('addEventBtn').addEventListener('click', () => {
+            selectedDate = new Date();
+            document.getElementById('eventDate').value = selectedDate.toISOString().split('T')[0];
+            document.getElementById('eventModal').style.display = 'block';
+        });
+        
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('eventModal').style.display = 'none';
+            document.getElementById('eventForm').reset();
+        });
+        
+        document.getElementById('cancelEvent').addEventListener('click', () => {
+            document.getElementById('eventModal').style.display = 'none';
+            document.getElementById('eventForm').reset();
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('eventModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('eventModal')) {
+                document.getElementById('eventModal').style.display = 'none';
+                document.getElementById('eventForm').reset();
+            }
+        });
+        
+        // Handle form submission
+        document.getElementById('eventForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('eventTitle').value;
+            const date = document.getElementById('eventDate').value;
+            const time = document.getElementById('eventTime').value;
+            const description = document.getElementById('eventDescription').value;
+            const category = document.getElementById('eventCategory').value;
+            
+            const newEvent = {
+                id: Date.now(),
+                title,
+                date,
+                time,
+                description,
+                category
+            };
+            
+            events.push(newEvent);
+            saveEvents();
+            
+            document.getElementById('eventModal').style.display = 'none';
+            document.getElementById('eventForm').reset();
+            
+            renderCalendar();
+        });
+        
+        // Navigation event listeners
         document.getElementById('prevMonth').addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
             renderCalendar();
