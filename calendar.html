@@ -178,56 +178,58 @@
                     <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 500;">Time (Optional)</label>
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <!-- Clock Interface -->
-                        <div style="position: relative; width: 140px; height: 140px; border: 3px solid var(--border-color); border-radius: 50%; background: var(--bg-secondary); cursor: pointer;" id="clockContainer">
+                        <div style="position: relative; width: 180px; height: 180px;" id="clockContainer">
                             <!-- Clock face -->
-                            <svg width="140" height="140" style="position: absolute; top: 0; left: 0;">
-                                <!-- Hour markers -->
-                                <g stroke="var(--text-tertiary)" stroke-width="2">
-                                    <!-- 12 o'clock -->
-                                    <line x1="70" y1="8" x2="70" y2="18" />
-                                    <!-- 1 o'clock -->
-                                    <line x1="104.5" y1="18.5" x2="99.5" y2="26.5" />
-                                    <!-- 2 o'clock -->
-                                    <line x1="121.5" y1="35.5" x2="113.5" y2="40.5" />
-                                    <!-- 3 o'clock -->
-                                    <line x1="132" y1="70" x2="122" y2="70" />
-                                    <!-- 4 o'clock -->
-                                    <line x1="121.5" y1="104.5" x2="113.5" y2="99.5" />
-                                    <!-- 5 o'clock -->
-                                    <line x1="104.5" y1="121.5" x2="99.5" y2="113.5" />
-                                    <!-- 6 o'clock -->
-                                    <line x1="70" y1="132" x2="70" y2="122" />
-                                    <!-- 7 o'clock -->
-                                    <line x1="35.5" y1="121.5" x2="40.5" y2="113.5" />
-                                    <!-- 8 o'clock -->
-                                    <line x1="18.5" y1="104.5" x2="26.5" y2="99.5" />
-                                    <!-- 9 o'clock -->
-                                    <line x1="8" y1="70" x2="18" y2="70" />
-                                    <!-- 10 o'clock -->
-                                    <line x1="18.5" y1="35.5" x2="26.5" y2="40.5" />
-                                    <!-- 11 o'clock -->
-                                    <line x1="35.5" y1="18.5" x2="40.5" y2="26.5" />
-                                </g>
-                                <!-- Clock numbers -->
-                                <g fill="var(--text-primary)" font-family="Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">
-                                    <text x="70" y="14">12</text>
-                                    <text x="108" y="20">1</text>
-                                    <text x="128" y="40">2</text>
-                                    <text x="135" y="74">3</text>
-                                    <text x="128" y="105">4</text>
-                                    <text x="108" y="123">5</text>
-                                    <text x="70" y="130">6</text>
-                                    <text x="32" y="123">7</text>
-                                    <text x="12" y="105">8</text>
-                                    <text x="5" y="74">9</text>
-                                    <text x="12" y="40">10</text>
-                                    <text x="32" y="20">11</text>
-                                </g>
-                                <!-- Single hand -->
-                                <line id="clockHand" x1="70" y1="70" x2="70" y2="40" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
-                                <!-- Center dot -->
-                                <circle cx="70" cy="70" r="4" fill="var(--text-primary)" />
-                            </svg>
+                            <div style="position: absolute; top: 20px; left: 20px; width: 140px; height: 140px; border: 3px solid var(--border-color); border-radius: 50%; background: var(--bg-secondary); cursor: pointer;">
+                                <svg width="140" height="140" style="position: absolute; top: 0; left: 0;">
+                                    <!-- Hour markers -->
+                                    <g stroke="var(--text-tertiary)" stroke-width="2">
+                                        <!-- 12 o'clock -->
+                                        <line x1="70" y1="8" x2="70" y2="18" />
+                                        <!-- 1 o'clock -->
+                                        <line x1="104.5" y1="18.5" x2="99.5" y2="26.5" />
+                                        <!-- 2 o'clock -->
+                                        <line x1="121.5" y1="35.5" x2="113.5" y2="40.5" />
+                                        <!-- 3 o'clock -->
+                                        <line x1="132" y1="70" x2="122" y2="70" />
+                                        <!-- 4 o'clock -->
+                                        <line x1="121.5" y1="104.5" x2="113.5" y2="99.5" />
+                                        <!-- 5 o'clock -->
+                                        <line x1="104.5" y1="121.5" x2="99.5" y2="113.5" />
+                                        <!-- 6 o'clock -->
+                                        <line x1="70" y1="132" x2="70" y2="122" />
+                                        <!-- 7 o'clock -->
+                                        <line x1="35.5" y1="121.5" x2="40.5" y2="113.5" />
+                                        <!-- 8 o'clock -->
+                                        <line x1="18.5" y1="104.5" x2="26.5" y2="99.5" />
+                                        <!-- 9 o'clock -->
+                                        <line x1="8" y1="70" x2="18" y2="70" />
+                                        <!-- 10 o'clock -->
+                                        <line x1="18.5" y1="35.5" x2="26.5" y2="40.5" />
+                                        <!-- 11 o'clock -->
+                                        <line x1="35.5" y1="18.5" x2="40.5" y2="26.5" />
+                                    </g>
+                                    <!-- Single hand -->
+                                    <line id="clockHand" x1="70" y1="70" x2="70" y2="40" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" />
+                                    <!-- Center dot -->
+                                    <circle cx="70" cy="70" r="4" fill="var(--text-primary)" />
+                                </svg>
+                            </div>
+                            <!-- Clock numbers positioned outside the clock -->
+                            <div style="position: absolute; top: 0; left: 0; width: 180px; height: 180px; pointer-events: none;">
+                                <div style="position: absolute; top: 5px; left: 50%; transform: translateX(-50%); color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">12</div>
+                                <div style="position: absolute; top: 15px; right: 25px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">1</div>
+                                <div style="position: absolute; top: 35px; right: 10px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">2</div>
+                                <div style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">3</div>
+                                <div style="position: absolute; bottom: 35px; right: 10px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">4</div>
+                                <div style="position: absolute; bottom: 15px; right: 25px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">5</div>
+                                <div style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">6</div>
+                                <div style="position: absolute; bottom: 15px; left: 25px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">7</div>
+                                <div style="position: absolute; bottom: 35px; left: 10px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">8</div>
+                                <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">9</div>
+                                <div style="position: absolute; top: 35px; left: 5px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">10</div>
+                                <div style="position: absolute; top: 15px; left: 25px; color: var(--text-primary); font-family: Inter, sans-serif; font-size: 14px; font-weight: 600;">11</div>
+                            </div>
                         </div>
                         
                         <!-- Digital display and controls -->
@@ -571,8 +573,9 @@
         
         function getAngleFromClick(event, clockContainer) {
             const rect = clockContainer.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
+            // Center is now offset by 20px due to the new structure
+            const centerX = rect.left + 90; // 20px offset + 70px to center
+            const centerY = rect.top + 90;  // 20px offset + 70px to center
             const x = event.clientX - centerX;
             const y = event.clientY - centerY;
             let angle = Math.atan2(y, x) * 180 / Math.PI + 90;
