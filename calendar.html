@@ -252,10 +252,20 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
+
+                <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-weight: 500; font-size: 0.95rem;">
+                        <input type="checkbox" id="eventCompleted" style="width: 16px; height: 16px;">
+                        <span>Mark as completed</span>
+                    </label>
+                    <button type="button" id="deleteEventBtn" style="display: none; background: #ef4444; color: white; border: none; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; font-weight: 500; font-size: 0.9rem;">
+                        Delete event
+                    </button>
+                </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: flex-end;">
                     <button type="button" id="cancelEvent" style="background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Cancel</button>
-                    <button type="submit" style="background: #10b981; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Add Event</button>
+                    <button type="submit" style="background: #10b981; color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 500;">Save</button>
                 </div>
             </form>
         </div>
@@ -471,9 +481,8 @@
                     const color = categoryColors[event.category] || '#10b981';
                     const timeStr = event.time ? new Date(`2000-01-01T${event.time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : '';
                     const completedStyle = event.completed ? 'text-decoration: line-through; opacity: 0.7;' : '';
-                    const completedLabel = event.completed ? 'Completed' : 'Mark Done';
                     dayContent += `
-                        <div style="background: var(--bg-primary); border-radius: 8px; padding: 0.75rem 1rem; border-left: 4px solid ${color}; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;">
+                        <div onclick="editEvent(${event.id})" style="background: var(--bg-primary); border-radius: 8px; padding: 0.75rem 1rem; border-left: 4px solid ${color}; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; cursor: pointer;">
                             <div style="flex: 1; ${completedStyle}">
                                 <div style="font-weight: 600; margin-bottom: 0.1rem; color: var(--text-primary);">
                                     ${event.title}
@@ -481,11 +490,7 @@
                                 </div>
                                 ${event.description ? `<div style="font-size: 0.9rem; color: var(--text-secondary);">${event.description}</div>` : ''}
                             </div>
-                            <div style="display: flex; gap: 0.25rem;">
-                                <button onclick="toggleEventComplete(${event.id})" style="background: ${event.completed ? '#10b981' : 'var(--bg-secondary)'}; color: ${event.completed ? 'white' : 'var(--text-secondary)'}; border: 1px solid var(--border-color); border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">${completedLabel}</button>
-                                <button onclick="editEvent(${event.id})" style="background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">Edit</button>
-                                <button onclick="deleteEvent(${event.id})" style="background: #ef4444; color: white; border: none; border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">Delete</button>
-                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-tertiary); white-space: nowrap;">Click to edit</div>
                         </div>
                     `;
                 });
@@ -719,6 +724,8 @@
             document.getElementById('eventTime').value = event.time || '';
             document.getElementById('eventDescription').value = event.description || '';
             document.getElementById('eventCategory').value = event.category || 'other';
+            document.getElementById('eventCompleted').checked = !!event.completed;
+            document.getElementById('deleteEventBtn').style.display = 'inline-flex';
             
             document.getElementById('eventModal').style.display = 'block';
         }
@@ -745,6 +752,8 @@
         document.getElementById('addEventBtn').addEventListener('click', () => {
             editingEventId = null;
             document.getElementById('eventForm').reset();
+            document.getElementById('eventCompleted').checked = false;
+            document.getElementById('deleteEventBtn').style.display = 'none';
             const dateToUse = selectedDate || new Date();
             document.getElementById('eventDate').value = dateToUse.toISOString().split('T')[0];
             document.getElementById('eventModal').style.display = 'block';
@@ -753,11 +762,17 @@
         document.getElementById('closeModal').addEventListener('click', () => {
             document.getElementById('eventModal').style.display = 'none';
             document.getElementById('eventForm').reset();
+            document.getElementById('eventCompleted').checked = false;
+            document.getElementById('deleteEventBtn').style.display = 'none';
+            editingEventId = null;
         });
         
         document.getElementById('cancelEvent').addEventListener('click', () => {
             document.getElementById('eventModal').style.display = 'none';
             document.getElementById('eventForm').reset();
+            document.getElementById('eventCompleted').checked = false;
+            document.getElementById('deleteEventBtn').style.display = 'none';
+            editingEventId = null;
         });
         
         // Close modal when clicking outside
@@ -765,7 +780,20 @@
             if (e.target === document.getElementById('eventModal')) {
                 document.getElementById('eventModal').style.display = 'none';
                 document.getElementById('eventForm').reset();
+                document.getElementById('eventCompleted').checked = false;
+                document.getElementById('deleteEventBtn').style.display = 'none';
+                editingEventId = null;
             }
+        });
+
+        document.getElementById('deleteEventBtn').addEventListener('click', () => {
+            if (!editingEventId) return;
+            deleteEvent(editingEventId);
+            document.getElementById('eventModal').style.display = 'none';
+            document.getElementById('eventForm').reset();
+            document.getElementById('eventCompleted').checked = false;
+            document.getElementById('deleteEventBtn').style.display = 'none';
+            editingEventId = null;
         });
         
         // Handle form submission
@@ -777,6 +805,7 @@
             const time = document.getElementById('eventTime').value;
             const description = document.getElementById('eventDescription').value;
             const category = document.getElementById('eventCategory').value;
+            const completed = document.getElementById('eventCompleted').checked;
             
             if (editingEventId) {
                 const index = events.findIndex(event => event.id === editingEventId);
@@ -787,7 +816,8 @@
                         date,
                         time,
                         description,
-                        category
+                        category,
+                        completed
                     };
                 }
                 editingEventId = null;
@@ -799,7 +829,7 @@
                     time,
                     description,
                     category,
-                    completed: false
+                    completed
                 };
                 events.push(newEvent);
             }
