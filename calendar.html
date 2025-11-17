@@ -421,7 +421,7 @@
                     dayContent += '<div style="flex: 1; display: flex; flex-direction: column; gap: 1px;">';
                     dayEvents.slice(0, 3).forEach(event => {
                         const color = categoryColors[event.category] || '#10b981';
-                        dayContent += `<div style="background: ${color}; color: white; padding: 1px 4px; border-radius: 2px; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${event.title}">${event.title}</div>`;
+                        dayContent += `<div data-event-id="${event.id ?? ''}" style="background: ${color}; color: white; padding: 1px 4px; border-radius: 2px; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer;" title="${event.title}">${event.title}</div>`;
                     });
                     if (dayEvents.length > 3) {
                         dayContent += `<div style="color: var(--text-tertiary); font-size: 10px;">+${dayEvents.length - 3} more</div>`;
@@ -430,6 +430,18 @@
                 }
                 
                 dayElement.innerHTML = dayContent;
+
+                // Make individual event pills clickable for editing without triggering new-event click
+                const eventPills = dayElement.querySelectorAll('[data-event-id]');
+                eventPills.forEach(pill => {
+                    const idAttr = pill.getAttribute('data-event-id');
+                    if (!idAttr) return; // skip static events without ids
+                    const eventId = parseInt(idAttr, 10);
+                    pill.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        editEvent(eventId);
+                    });
+                });
                 
                 // Add click event to open modal with selected date
                 dayElement.addEventListener('click', () => {
@@ -556,7 +568,13 @@
                     dayEvents.forEach(event => {
                         const color = categoryColors[event.category] || '#10b981';
                         const eventDiv = document.createElement('div');
-                        eventDiv.style.cssText = `background: ${color}; color: white; padding: 0.5rem; border-radius: 4px; font-size: 12px;`;
+                        eventDiv.style.cssText = `background: ${color}; color: white; padding: 0.5rem; border-radius: 4px; font-size: 12px; cursor: pointer;`;
+                        if (event.id != null) {
+                            eventDiv.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                editEvent(event.id);
+                            });
+                        }
                         eventDiv.textContent = event.title;
                         dayColumn.appendChild(eventDiv);
                     });
@@ -623,7 +641,7 @@
                     dayContent += '<div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">';
                     dayEvents.slice(0, 4).forEach(event => {
                         const color = categoryColors[event.category] || '#10b981';
-                        dayContent += `<div style="background: ${color}; color: white; padding: 2px 4px; border-radius: 2px; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${event.title}">${event.title}</div>`;
+                        dayContent += `<div data-event-id="${event.id ?? ''}" style="background: ${color}; color: white; padding: 2px 4px; border-radius: 2px; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer;" title="${event.title}">${event.title}</div>`;
                     });
                     if (dayEvents.length > 4) {
                         dayContent += `<div style="color: var(--text-tertiary); font-size: 10px; text-align: center;">+${dayEvents.length - 4} more</div>`;
@@ -632,6 +650,18 @@
                 }
                 
                 dayElement.innerHTML = dayContent;
+
+                // Make week-view event pills clickable for editing
+                const weekPills = dayElement.querySelectorAll('[data-event-id]');
+                weekPills.forEach(pill => {
+                    const idAttr = pill.getAttribute('data-event-id');
+                    if (!idAttr) return;
+                    const eventId = parseInt(idAttr, 10);
+                    pill.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        editEvent(eventId);
+                    });
+                });
                 
                 dayElement.addEventListener('click', () => {
                     editingEventId = null;
@@ -695,14 +725,32 @@
                     });
                     timeInfo = ` • ${time}`;
                 }
+
+                const canDelete = event.id != null;
                 
                 eventElement.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                        <h4 style="margin: 0; color: var(--text-primary);">${event.title}</h4>
-                        <span style="background: ${color}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">${dateStr}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem; gap: 0.5rem;">
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: var(--text-primary);">${event.title}</h4>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <span style="background: ${color}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 12px;">${dateStr}</span>
+                            ${canDelete ? `<button data-event-id="${event.id}" style="background: transparent; border: none; color: var(--text-tertiary); cursor: pointer; font-size: 14px; padding: 0 0.25rem;">✕</button>` : ''}
+                        </div>
                     </div>
                     <p style="margin: 0; color: var(--text-tertiary); font-size: 14px;">${event.description || 'No description'}${timeInfo}</p>
                 `;
+
+                if (canDelete) {
+                    const deleteBtn = eventElement.querySelector('[data-event-id]');
+                    if (deleteBtn) {
+                        const eventId = event.id;
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteEvent(eventId);
+                        });
+                    }
+                }
                 
                 upcomingEventsList.appendChild(eventElement);
             });
