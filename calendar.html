@@ -686,8 +686,8 @@
         
         // Modal functionality
         document.getElementById('addEventBtn').addEventListener('click', () => {
-            selectedDate = new Date();
-            document.getElementById('eventDate').value = selectedDate.toISOString().split('T')[0];
+            const dateToUse = selectedDate || new Date();
+            document.getElementById('eventDate').value = dateToUse.toISOString().split('T')[0];
             document.getElementById('eventModal').style.display = 'block';
         });
         
