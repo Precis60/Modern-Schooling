@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Modern Schooling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h1>Modern Schooling</h1></a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-dropdown">
+                        <button class="nav-btn" onclick="toggleNavigation()">
+                            Menu
+                        </button>
+                        <div class="nav-menu-dropdown" id="navMenu">
+                            <a href="index.html" class="nav-item-dropdown">Home</a>
+                            <a href="blog.html" class="nav-item-dropdown">Daily Blog</a>
+                            <a href="about.html" class="nav-item-dropdown">About</a>
+                            <a href="activities.html" class="nav-item-dropdown">Activities</a>
+                            <a href="calendar.html" class="nav-item-dropdown">Calendar</a>
+                            <div class="nav-item-dropdown submenu-item" onclick="toggleSubmenu(event)">
+                                Settings
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: auto;">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                                <div class="submenu-dropdown" id="settingsSubmenu">
+                                    <a href="theme.html" class="submenu-item-link">Theme</a>
+                                    <a href="font-size.html" class="submenu-item-link">Font Size</a>
+                                    <a href="language.html" class="submenu-item-link">Language</a>
+                                    <a href="notifications.html" class="submenu-item-link">Notifications</a>
+                                    <a href="account.html" class="submenu-item-link">Account</a>
+                                    <a href="help.html" class="submenu-item-link">Help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Help & Support</h1>
+                <p class="hero-subtitle">Find answers to common questions about Modern Schooling</p>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: var(--bg-secondary); transition: background-color 0.3s ease;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">Getting Started</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                            Modern Schooling helps you keep track of your learning, blog posts, activities, and calendar.
+                        </p>
+                        <ul style="color: var(--text-tertiary); padding-left: 1.25rem; font-size: 14px;">
+                            <li>Use the <strong>Daily Blog</strong> to write about what you did each day.</li>
+                            <li>Check the <strong>Calendar</strong> for upcoming assignments and events.</li>
+                            <li>Visit <strong>Activities</strong> for extra practice and fun learning tasks.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">Customising Your Experience</h3>
+                        <ul style="color: var(--text-tertiary); padding-left: 1.25rem; font-size: 14px;">
+                            <li>Change colours in <strong>Theme</strong> settings.</li>
+                            <li>Make text bigger or smaller in <strong>Font Size</strong>.</li>
+                            <li>Switch languages in <strong>Language</strong> settings.</li>
+                            <li>Turn emails and reminders on or off in <strong>Notifications</strong>.</li>
+                            <li>Update your details on the <strong>Account</strong> page.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; transition: background-color 0.3s ease;">
+                        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">Need More Help?</h3>
+                        <p style="color: var(--text-tertiary); font-size: 14px;">
+                            If you get stuck, ask your teacher or parent to look at this page with you.
+                            You can also write notes in your Daily Blog about what you find confusing
+                            so you remember to ask about it later.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="index.html" style="background: var(--bg-tertiary); color: var(--text-secondary); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500;">Back to Home</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--footer-bg); color: var(--footer-text); padding: 40px 0; text-align: center; transition: all 0.3s ease;">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <h3 style="margin-bottom: 1rem; color: var(--footer-text);">Modern Schooling</h3>
+                <p style="color: var(--footer-text-muted); margin-bottom: 2rem;">Lucas Anderson's Year 8 learning journey</p>
+                <div style="margin-bottom: 2rem;">
+                    <a href="index.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Home</a>
+                    <a href="blog.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">Daily Blog</a>
+                    <a href="about.html" style="color: var(--footer-text-muted); text-decoration: none; margin: 0 1rem; transition: color 0.3s ease;">About</a>
+                </div>
+                <p style="color: var(--footer-text-muted);">&copy; 2025 Modern Schooling - Lucas Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
