@@ -273,6 +273,7 @@
         let currentDate = new Date();
         let events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
         let selectedDate = null;
+        let editingEventId = null;
         let currentView = 'month'; // 'day', 'threeDay', 'week', 'month'
         
         // Category colors
@@ -422,6 +423,8 @@
                 
                 // Add click event to open modal with selected date
                 dayElement.addEventListener('click', () => {
+                    editingEventId = null;
+                    document.getElementById('eventForm').reset();
                     selectedDate = currentDayDate;
                     document.getElementById('eventDate').value = currentDayDate.toISOString().split('T')[0];
                     document.getElementById('eventModal').style.display = 'block';
@@ -458,19 +461,31 @@
             const dayName = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
             
             let dayContent = `
-                <div style="background: var(--bg-secondary); border-radius: 8px; padding: 2rem; min-height: 400px;">
+                <div style="background: var(--bg-secondary); border-radius: 8px; padding: 2rem; min-height: 400px; max-width: 700px; margin: 0 auto;">
                     <h3 style="color: var(--text-primary); margin-bottom: 1.5rem; text-align: center;">${dayName}</h3>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             `;
             
             if (dayEvents.length > 0) {
                 dayEvents.forEach(event => {
                     const color = categoryColors[event.category] || '#10b981';
                     const timeStr = event.time ? new Date(`2000-01-01T${event.time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : '';
+                    const completedStyle = event.completed ? 'text-decoration: line-through; opacity: 0.7;' : '';
+                    const completedLabel = event.completed ? 'Completed' : 'Mark Done';
                     dayContent += `
-                        <div style="background: ${color}; color: white; padding: 1rem; border-radius: 6px; cursor: pointer;">
-                            <div style="font-weight: 600; margin-bottom: 0.25rem;">${event.title} ${timeStr ? `• ${timeStr}` : ''}</div>
-                            ${event.description ? `<div style="font-size: 14px; opacity: 0.9;">${event.description}</div>` : ''}
+                        <div style="background: var(--bg-primary); border-radius: 8px; padding: 0.75rem 1rem; border-left: 4px solid ${color}; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;">
+                            <div style="flex: 1; ${completedStyle}">
+                                <div style="font-weight: 600; margin-bottom: 0.1rem; color: var(--text-primary);">
+                                    ${event.title}
+                                    ${timeStr ? `<span style="font-weight: 500; color: var(--text-secondary); font-size: 0.9rem;"> • ${timeStr}</span>` : ''}
+                                </div>
+                                ${event.description ? `<div style="font-size: 0.9rem; color: var(--text-secondary);">${event.description}</div>` : ''}
+                            </div>
+                            <div style="display: flex; gap: 0.25rem;">
+                                <button onclick="toggleEventComplete(${event.id})" style="background: ${event.completed ? '#10b981' : 'var(--bg-secondary)'}; color: ${event.completed ? 'white' : 'var(--text-secondary)'}; border: 1px solid var(--border-color); border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">${completedLabel}</button>
+                                <button onclick="editEvent(${event.id})" style="background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">Edit</button>
+                                <button onclick="deleteEvent(${event.id})" style="background: #ef4444; color: white; border: none; border-radius: 999px; padding: 0.25rem 0.6rem; font-size: 0.75rem; cursor: pointer;">Delete</button>
+                            </div>
                         </div>
                     `;
                 });
@@ -480,8 +495,8 @@
             
             dayContent += `
                     </div>
-                    <button onclick="selectedDate = currentDate; document.getElementById('eventDate').value = currentDate.toISOString().split('T')[0]; document.getElementById('eventModal').style.display = 'block';" 
-                            style="background: #10b981; color: white; border: none; border-radius: 6px; padding: 0.75rem 1.5rem; margin-top: 1rem; cursor: pointer; width: 100%;">
+                    <button onclick="editingEventId = null; document.getElementById('eventForm').reset(); selectedDate = currentDate; document.getElementById('eventDate').value = currentDate.toISOString().split('T')[0]; document.getElementById('eventModal').style.display = 'block';" 
+                            style="background: #10b981; color: white; border: none; border-radius: 6px; padding: 0.75rem 1.5rem; margin-top: 1.5rem; cursor: pointer; width: 100%;">
                         Add Event for This Day
                     </button>
                 </div>
@@ -543,6 +558,8 @@
                 }
                 
                 dayColumn.addEventListener('click', () => {
+                    editingEventId = null;
+                    document.getElementById('eventForm').reset();
                     selectedDate = date;
                     document.getElementById('eventDate').value = date.toISOString().split('T')[0];
                     document.getElementById('eventModal').style.display = 'block';
@@ -612,6 +629,8 @@
                 dayElement.innerHTML = dayContent;
                 
                 dayElement.addEventListener('click', () => {
+                    editingEventId = null;
+                    document.getElementById('eventForm').reset();
                     selectedDate = date;
                     document.getElementById('eventDate').value = date.toISOString().split('T')[0];
                     document.getElementById('eventModal').style.display = 'block';
@@ -684,8 +703,48 @@
             });
         }
         
+        function findEventById(id) {
+            return events.find(event => event.id === id);
+        }
+        
+        function editEvent(id) {
+            const event = findEventById(id);
+            if (!event) return;
+            
+            editingEventId = id;
+            selectedDate = new Date(event.date);
+            
+            document.getElementById('eventTitle').value = event.title;
+            document.getElementById('eventDate').value = event.date;
+            document.getElementById('eventTime').value = event.time || '';
+            document.getElementById('eventDescription').value = event.description || '';
+            document.getElementById('eventCategory').value = event.category || 'other';
+            
+            document.getElementById('eventModal').style.display = 'block';
+        }
+        
+        function toggleEventComplete(id) {
+            const event = findEventById(id);
+            if (!event) return;
+            
+            event.completed = !event.completed;
+            saveEvents();
+            renderCalendar();
+        }
+        
+        function deleteEvent(id) {
+            events = events.filter(event => event.id !== id);
+            if (editingEventId === id) {
+                editingEventId = null;
+            }
+            saveEvents();
+            renderCalendar();
+        }
+        
         // Modal functionality
         document.getElementById('addEventBtn').addEventListener('click', () => {
+            editingEventId = null;
+            document.getElementById('eventForm').reset();
             const dateToUse = selectedDate || new Date();
             document.getElementById('eventDate').value = dateToUse.toISOString().split('T')[0];
             document.getElementById('eventModal').style.display = 'block';
@@ -719,16 +778,31 @@
             const description = document.getElementById('eventDescription').value;
             const category = document.getElementById('eventCategory').value;
             
-            const newEvent = {
-                id: Date.now(),
-                title,
-                date,
-                time,
-                description,
-                category
-            };
-            
-            events.push(newEvent);
+            if (editingEventId) {
+                const index = events.findIndex(event => event.id === editingEventId);
+                if (index !== -1) {
+                    events[index] = {
+                        ...events[index],
+                        title,
+                        date,
+                        time,
+                        description,
+                        category
+                    };
+                }
+                editingEventId = null;
+            } else {
+                const newEvent = {
+                    id: Date.now(),
+                    title,
+                    date,
+                    time,
+                    description,
+                    category,
+                    completed: false
+                };
+                events.push(newEvent);
+            }
             saveEvents();
             
             document.getElementById('eventModal').style.display = 'none';
